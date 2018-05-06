@@ -1,0 +1,14 @@
+{
+	"name": "MMM-FitBark",
+	"version": "1.0.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Mochman/MMM-FitBark"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"request": "latest",
+		"request-promise-native": "latest",
+		"express": "latest"
+	}
+}
