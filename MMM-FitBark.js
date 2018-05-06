@@ -85,8 +85,7 @@ Module.register("MMM-FitBark",{
 		var timeUpdate = document.createElement("div");
 		if(this.timeCompare >= 60) {
 			this.syncHours = Math.floor(this.timeCompare / 60);
-			this.timeCompare = Math.round(this.timeCompare - this.syncHours * 60);
-			this.timeText = "Synced " + this.syncHours + "h " + this.timeCompare + "m ago";
+			this.timeText = "Synced " + this.syncHours + "h " + Math.round(this.timeCompare - this.syncHours * 60) + "m ago";
 		} else {
 			this.timeText = "Synced " + Math.round(this.timeCompare) + "m ago";
 		}
@@ -154,7 +153,7 @@ Module.register("MMM-FitBark",{
 		if(this.dogName != "" && this.dogGoal !=0 && this.simDogs != 0) {
 			this.loaded = true;
 		}
-        this.updateDom();
+        this.updateDom(self.config.animationSpeed);
     },
 
 	updateLoop: function() {
