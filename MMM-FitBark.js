@@ -43,6 +43,8 @@ Module.register("MMM-FitBark",{
 
 	getDom: function() {
 		this.textColor = "";
+		this.syncHours = 0;
+		this.timeText = "";
 		var wrapper = document.createElement("div");
 		if(this.loaded == false) {
 			wrapper.innerHTML = "Loading...";
@@ -81,7 +83,15 @@ Module.register("MMM-FitBark",{
 		activeAvg.innerHTML = "Active " + this.dogActivePercent.toFixed(0) + "% of the day";
 		activeAvg.className = "small";
 		var timeUpdate = document.createElement("div");
-		timeUpdate.innerHTML = "Synced " + Math.round(this.timeCompare) + "m ago";
+this.timeCompare = 200;
+		if(this.timeCompare >= 60) {
+			this.syncHours = Math.floor(this.timeCompare / 60);
+			this.timeCompare = Math.round(this.timeCompare - this.syncHours * 60);
+			this.timeText = "Synced " + this.syncHours + "h " + this.timeCompare + "m ago";
+		} else {
+			this.timeText = "Synced " + Math.round(this.timeCompare) + "m ago";
+		}
+		timeUpdate.innerHTML = this.timeText;
 		timeUpdate.className = "xsmall thin light";
 		
 		wrapper.appendChild(nameLabel);
@@ -123,8 +133,9 @@ Module.register("MMM-FitBark",{
 					let timeDiff = moment.duration(timeNow.diff(this.lastSyncTime));
 					this.timeCompare = timeDiff.asMinutes();
 				} else {
-					this.timeCompare = 0;
 					this.lastPoints = this.dogTotal;
+					this.lastSyncTime = moment();
+					this.timeCompare = 0;
 				}
 				break;
 			case 'DOG_SIMILAR':
