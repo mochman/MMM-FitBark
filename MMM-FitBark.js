@@ -83,7 +83,6 @@ Module.register("MMM-FitBark",{
 		activeAvg.innerHTML = "Active " + this.dogActivePercent.toFixed(0) + "% of the day";
 		activeAvg.className = "small";
 		var timeUpdate = document.createElement("div");
-this.timeCompare = 200;
 		if(this.timeCompare >= 60) {
 			this.syncHours = Math.floor(this.timeCompare / 60);
 			this.timeCompare = Math.round(this.timeCompare - this.syncHours * 60);
